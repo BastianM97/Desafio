@@ -20,7 +20,7 @@ function encriptarVocales(texto) {
         if (claveVocales[c]) {
             textoEncriptado += claveVocales[c];
         } else {
-            textoEncriptado += c; // Si no es una vocal, se deja igual
+            textoEncriptado += c; 
         }
     }
 
@@ -28,8 +28,7 @@ function encriptarVocales(texto) {
 }
 
 function desencriptarVocales(texto) {
-    // Invertimos la clave para desencriptar
-    const claveVocalesInvertida = {
+        const claveVocalesInvertida = {
         'ai': 'a',
         'enter': 'e',
         'imes': 'i',
@@ -38,21 +37,15 @@ function desencriptarVocales(texto) {
         
     };
 
-    let textoDesencriptado = '';
+    let textoDesencriptado = texto;
 
-    for (let i = 0; i < texto.length; i++) {
-        let c = texto[i];
-
-        // Si es una vocal, se sustituye según la clave invertida
-        if (claveVocalesInvertida[c]) {
-            textoDesencriptado += claveVocalesInvertida[c];
-        } else {
-            textoDesencriptado += c; 
-            // Si no es una vocal, se deja igual
+        for (let clave in claveVocalesInvertida) {
+        textoDesencriptado = textoDesencriptado.split(clave).join(claveVocalesInvertida[clave]);
         }
-    }
 
     return textoDesencriptado;
+
+   
 }
 
 function encriptarTexto() {
@@ -71,16 +64,16 @@ function desencriptarTexto() {
 
 
 document.getElementById("copyButton").addEventListener("click", function() {
-    // Selecciona el texto del cuadro
     let resultado = document.getElementById("resultado");
     resultado.select();
-    resultado.setSelectionRange(0, 99999); // Para dispositivos móviles, idea del chat
 
-    // Copia el texto al portapapeles
     document.execCommand("copy");
 
-    // Opcional: Muestra una alerta o un mensaje
-    alert("Texto copiado al portapapeles");
+   
+});
+
+
+
 });
 
 
